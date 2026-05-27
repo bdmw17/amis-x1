@@ -1,0 +1,31 @@
+-- V2: Audit-Spalten (erstellt_von / geaendert_von) zu allen Tabellen hinzufügen
+-- Erforderlich für JPA BaseEntity mit @CreatedBy / @LastModifiedBy
+
+ALTER TABLE unterkunft
+    ADD COLUMN IF NOT EXISTS erstellt_am   TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS geaendert_am  TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS erstellt_von  VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS geaendert_von VARCHAR(100);
+
+ALTER TABLE zimmer
+    ADD COLUMN IF NOT EXISTS erstellt_am   TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS geaendert_am  TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS erstellt_von  VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS geaendert_von VARCHAR(100);
+
+ALTER TABLE belegung
+    ADD COLUMN IF NOT EXISTS erstellt_am   TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS geaendert_am  TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS erstellt_von  VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS geaendert_von VARCHAR(100);
+
+ALTER TABLE termin
+    ADD COLUMN IF NOT EXISTS geaendert_am  TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS erstellt_von  VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS geaendert_von VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version       BIGINT NOT NULL DEFAULT 0;
+
+ALTER TABLE dokument
+    ADD COLUMN IF NOT EXISTS geaendert_am  TIMESTAMP DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS geaendert_von VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS version       BIGINT NOT NULL DEFAULT 0;
