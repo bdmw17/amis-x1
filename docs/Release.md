@@ -46,6 +46,28 @@
 
 ---
 
+## Meilenstein-Übersicht
+
+Die sieben Releases sind vier Meilensteinen zugeordnet. Thematisch verwandte Releases bilden je einen Meilenstein; die Meilenstein-Größen sind auf Basis der PT-Mittelwerte möglichst ausgeglichen (Ø 136 PT/Meilenstein). In **M4** sind 50 PT für externe Aufgaben reserviert (ausgegraut) und stehen für Releases nicht zur Verfügung – diese 50 PT werden bei der Größenbetrachtung berücksichtigt.
+
+| Meilenstein | Titel | Releases | Release-Arbeit (min–max) | Effektiv (inkl. ausgegraut) |
+|:-----------:|-------|:--------:|:------------------------:|:---------------------------:|
+| **M1** | Fundament & Stammdaten | R1, R2 | 93–152 PT (⌀ 123 PT) | **123 PT** |
+| **M2** | Basismodule & Unterkunftsverwaltung | R3, R4 | 120–197 PT (⌀ 159 PT) | **159 PT** |
+| **M3** | Operative Spezialprozesse | R5 | 84–133 PT (⌀ 109 PT) | **109 PT** |
+| **M4** | Verteilung, Finanzen & Reporting | R6, R7 | 80–125 PT (⌀ 103 PT) | **153 PT** (103 PT Releases + 50 PT ausgegraut) |
+
+### Thematische Begründung
+
+| Meilenstein | Inhalt |
+|:-----------:|--------|
+| **M1** | Technische Basis (Vue 3, Spring Boot, PostgreSQL, Docker), Rollen- & Rechteverwaltung, Audit-Trail, Bewohner-Registrierung & Stammdaten-Ansichten |
+| **M2** | AZR-Schnittstelle, Sonderstatus-Management, Terminverwaltung, Vordrucke, Bewohnerausweis · Liegenschafts- & Belegungsverwaltung, Anwesenheitserfassung |
+| **M3** | Interne Verlegungsplanung, Pforte & Besuchermanagement, medizinisches Modul (Krankenstation, Rezepte, Kostenübernahme), Sachmittel- & Leistungsverwaltung |
+| **M4** | Landesinterner Verteilungsprozess, Kassenführung, Bezahlkarte, Einmalzahlungen, Statistiken & BI-Reporting |
+
+---
+
 ## R1 – Fundament
 
 **Arbeitspakete:** AP-01, AP-02, AP-03  
