@@ -149,7 +149,7 @@
 |----|-------|----------------------------------------------|
 | AP-15 | Verlegungsplanung (intern) | P-AU-VD → A-AU-VD-01, A-AU-VD-02, A-AU-VD-04, A-AU-VD-05 |
 | AP-17 | Bewachung & Sicherheit (Pforte & Besucher) | P-BS-KG → A-BS-KG-01, A-BS-KG-02, A-BS-KG-03, A-BS-KG-04, A-BS-KG-05, A-BS-KG-06, A-BS-KG-09, A-BS-KG-10 · P-BS-BE → A-BS-BE-02, A-BS-BE-03, A-BS-BE-04, A-BS-BE-05, A-BS-BE-06, A-BS-BE-08, A-BS-BE-09 · P-BS-BZ → A-BS-BZ-01, A-BS-BZ-02 |
-| AP-18 | Krankenstation & Medizinisches Modul | G-KS-AL → A-KS-AL-01, A-KS-AL-02, A-KS-AL-05 · G-KS-SM → A-KS-SM-01, A-KS-SM-03, A-KS-SM-04, A-KS-SM-05, A-KS-SM-06, A-KS-SM-07, A-KS-SM-08, A-KS-SM-09, A-KS-SM-12, A-KS-SM-13, A-KS-SM-18 · P-KS-RE → A-KS-RE-01, A-KS-RE-02, A-KS-RE-03, A-KS-RE-04, A-KS-RE-05, A-KS-RE-06, A-KS-RE-07, A-KS-RE-08, A-KS-RE-09 · P-KS-GA → A-KS-GA-03, A-KS-GA-04 · P-KS-KÜ → A-KS-KÜ-01, A-KS-KÜ-02, A-KS-KÜ-03, A-KS-KÜ-07, A-KS-KÜ-08, A-KS-KÜ-10 |
+| AP-18 | Krankenstation & Medizinisches Modul | G-KS-AL → A-KS-AL-01, A-KS-AL-02, A-KS-AL-05 · G-KS-SM → A-KS-SM-01, A-KS-SM-03, A-KS-SM-04, A-KS-SM-05, A-KS-SM-06, A-KS-SM-07, A-KS-SM-08, A-KS-SM-09, A-KS-SM-12, A-KS-SM-13, A-KS-SM-18 · P-KS-RE → A-KS-RE-01, A-KS-RE-02, A-KS-RE-03, A-KS-RE-04, A-KS-RE-05, A-KS-RE-06, A-KS-RE-07, A-KS-RE-08, A-KS-RE-09 · P-KS-GA → A-KS-GA-03, A-KS-GA-04 · P-KS-TV → A-KS-TV-02 · P-KS-KÜ → A-KS-KÜ-01, A-KS-KÜ-02, A-KS-KÜ-03, A-KS-KÜ-07, A-KS-KÜ-08, A-KS-KÜ-10 |
 | AP-19 | Sachmittel- & Leistungsverwaltung | P-SD-SM → A-SD-SM-01, A-SD-SM-02, A-SD-SM-03, A-SD-SM-04, A-SD-SM-06, A-SD-SM-07, A-SD-SM-08, A-SD-SM-09, A-SD-SM-10 · P-SD-EG → A-SD-EG-02, A-SD-EG-03, A-SD-EG-04, A-SD-EG-05, A-SD-EG-06 · P-SL-ED → A-SL-ED-01 |
 
 ### Prozessbeteiligung
@@ -164,6 +164,7 @@
 | G-KS-SM | Krankenstation Standardmedizin | ✅ Abgeschlossen |
 | P-KS-RE | Rezepterstellung | ✅ Abgeschlossen |
 | P-KS-GA | Gesundheitsamt-Termine & Befunde | ✅ Abgeschlossen |
+| P-KS-TV | Krankenstation Terminverwaltung | ✅ Abgeschlossen |
 | P-KS-KÜ | Kostenübernahme | ✅ Abgeschlossen |
 | P-SD-SM | Sachmittelverwaltung | ✅ Abgeschlossen |
 | P-SD-EG | Essensausgabe (Leistungsakte) | ✅ Abgeschlossen |
@@ -258,6 +259,7 @@
 | G-KS-SM | Krankenstation Standardmedizin | R5 | R5 |
 | P-KS-RE | Rezepterstellung | R5 | R5 |
 | P-KS-GA | Gesundheitsamt-Termine & Befunde | R5 | R5 |
+| P-KS-TV | Krankenstation Terminverwaltung | R5 | R5 |
 | P-KS-KÜ | Kostenübernahme | R5 | R5 |
 | P-SD-SM | Sachmittelverwaltung | R5 | R5 |
 | P-SD-EG | Essensausgabe (Leistungsakte) | R5 | R5 |
