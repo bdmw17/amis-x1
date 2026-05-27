@@ -27,6 +27,16 @@ const router = createRouter({
       name: 'liegenschaft',
       component: () => import('../views/LiegenschaftView.vue'),
     },
+    {
+      path: '/admin/benutzer',
+      name: 'admin-benutzer',
+      component: () => import('../views/AdminBenutzerView.vue'),
+    },
+    {
+      path: '/admin/rollen',
+      name: 'admin-rollen',
+      component: () => import('../views/AdminRollenView.vue'),
+    },
   ],
 })
 

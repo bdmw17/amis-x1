@@ -16,6 +16,9 @@ import ToastContainer from './components/ToastContainer.vue'
       <RouterLink to="/bewohner">Bewohner</RouterLink>
       <RouterLink to="/termine">Termine</RouterLink>
       <RouterLink to="/liegenschaft">Liegenschaft</RouterLink>
+      <hr style="border-color:#444;margin:.5rem 0">
+      <RouterLink to="/admin/benutzer">Benutzer</RouterLink>
+      <RouterLink to="/admin/rollen">Rollen</RouterLink>
     </nav>
   </aside>
 

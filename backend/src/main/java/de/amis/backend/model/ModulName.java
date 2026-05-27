@@ -1,0 +1,22 @@
+package de.amis.backend.model;
+
+public enum ModulName {
+    BEWOHNER,
+    AZR,
+    SONDERSTATUS,
+    FREITEXT,
+    TERMINE,
+    FORMULARE,
+    AUSWEIS,
+    LIEGENSCHAFTEN,
+    BELEGUNG,
+    ANWESENHEIT,
+    VERLEGUNG,
+    VERTEILUNG,
+    BEWACHUNG,
+    KRANKENSTATION,
+    SACHMITTEL,
+    SOZIALLEISTUNGEN,
+    STATISTIKEN,
+    ADMINISTRATION
+}
