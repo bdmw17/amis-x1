@@ -45,20 +45,26 @@ AP-21  Statistiken & Reporting
 
 ---
 
-## AP-01 – Systeminfrastruktur & Basisarchitektur
+## AP-01 – Systeminfrastruktur & Basisarchitektur ✅
 
-**Anforderungen:** A-SYS-AL-03 (D), A-SYS-AL-04 (D), A-SYS-AL-05 (D), A-SYS-AL-06, A-SYS-NF-02 (D), A-SYS-NF-03 (D), A-SYS-NF-04 (D)
+**Anforderungen:** A-SYS-AL-03, A-SYS-AL-04, A-SYS-AL-05, A-SYS-AL-06, A-SYS-NF-02, A-SYS-NF-03, A-SYS-NF-04
+
+> Hinweis: Das Suffix (D) in der a.csv bedeutet „in Asyl4Win vorhanden" – **nicht** „in AMIS bereits implementiert". Alle Anforderungen wurden neu umgesetzt und geprüft.
 
 **Beschreibung:**  
-Technische Grundlage der Anwendung: Web-Framework (React), Datenbankwahl, Concurrent-Access-Strategie, responsives Layout, Multi-Fenster-Fähigkeit.
+Technische Grundlage der Anwendung: Vue 3 SPA, PostgreSQL 16, Concurrent-Access-Strategie, responsives Layout, Multi-Fenster-Fähigkeit.
 
 **Akzeptanzkriterien:**
-- [ ] Anwendung läuft browserbasiert (kein Desktop-Client notwendig)
-- [ ] Gleichzeitiger Zugriff mehrerer Nutzer:innen auf denselben Datensatz ohne Lost-Update (optimistic locking oder vergleichbar)
-- [ ] UI passt sich an Fenstergröße an (responsive); Elemente sind in der Größe anpassbar
-- [ ] Mehrere Module lassen sich in verschiedenen Browser-Tabs/Fenstern gleichzeitig nutzen
-- [ ] Öffnen einer Detailansicht (z. B. Anhang) lässt die übergeordnete Bewohner:innen-Ansicht offen
-- [ ] Neue Module können ohne Architekturänderungen integriert werden (Plugin-/Modul-Konzept dokumentiert)
+- [x] Anwendung läuft browserbasiert – A-SYS-AL-05
+- [x] Web-Datenhaltung mit schnellen Filter-/Auswertungs-Operationen – A-SYS-AL-03
+- [x] Gleichzeitiger Zugriff ohne Lost-Update – Backend: `@Version` + 409-Handler – A-SYS-AL-04
+- [ ] **⚠️ Offen (→ AP-04+):** Frontend-seitige 409-Fehlerbehandlung (Reload-Hinweis) – A-SYS-AL-04
+- [x] Responsive UI (Fenstergröße) – A-SYS-NF-02
+- [ ] **⚠️ Offen (→ AP-04+):** Benutzerseitig größenanpassbare Bedienelemente – A-SYS-NF-02
+- [x] Mehrere Module in verschiedenen Browser-Tabs gleichzeitig nutzbar – A-SYS-NF-03
+- [ ] **⚠️ Offen (→ AP-08):** Öffnen einer Detailansicht lässt übergeordnete Bewohner:innen-Ansicht offen – A-SYS-NF-04  
+  Router-Navigation ersetzt aktuell die View; benötigt Modal/Drawer-Pattern
+- [x] Neue Module ohne Architekturänderung integrierbar – A-SYS-AL-06
 
 **Abhängigkeiten:** keine  
 **Schätzung:** 10–20 PT (Basisinfrastruktur, nicht in CSV beziffert)

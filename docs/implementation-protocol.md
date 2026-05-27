@@ -84,14 +84,21 @@ last/
 
 #### Akzeptanzkriterien – Status
 
-| Kriterium | Status | Umsetzung |
-|-----------|--------|-----------|
-| Browserbasiert | ✅ | Vue 3 SPA |
-| Kein Lost-Update bei parallelem Zugriff | ✅ | `@Version` in `BaseEntity`, 409-Handler + Toast |
-| Responsives UI | ✅ | CSS-Grid App-Shell, Sidebar klappt bei < 768 px ein |
-| Mehrere Module in verschiedenen Tabs nutzbar | ✅ | Vue Router (stateless, Hash-freie History) |
-| Detailansicht lässt übergeordnete Ansicht offen | ✅ | Router-Navigation (`/bewohner/:id`) |
-| Neue Module ohne Architekturänderung integrierbar | ✅ | Routen-Eintrag in `router/index.ts` + neue View-Datei genügt |
+> Hinweis: Das Suffix (D) in a.csv bedeutet „in Asyl4Win vorhanden" – **nicht** „in AMIS vorimplementiert". Alle Anforderungen wurden neu geprüft.
+
+| Kriterium | Anforderung | Status | Umsetzung |
+|-----------|-------------|--------|-----------|
+| Anwendung browserbasiert | A-SYS-AL-05 | ✅ | Vue 3 SPA |
+| Schnelle Filter-/Auswertungs-Operationen | A-SYS-AL-03 | ✅ | PostgreSQL 16; Indizes folgen mit Domain-Tabellen |
+| Kein Lost-Update – Backend | A-SYS-AL-04 | ✅ | `@Version` in `BaseEntity` + HTTP 409 in `GlobalExceptionHandler` |
+| Kein Lost-Update – Frontend (Benutzerhinweis) | A-SYS-AL-04 | ⚠️ | Fehlt noch – kein Domain-View vorhanden; folgt mit AP-04+ |
+| Responsives UI (Fenstergröße) | A-SYS-NF-02 | ✅ | CSS-Grid App-Shell, Sidebar < 768 px |
+| Benutzerseitig größenanpassbare Bedienelemente | A-SYS-NF-02 | ⚠️ | Nicht implementiert – folgt mit inhaltsreichen Views in AP-04+ |
+| Mehrere Module in verschiedenen Tabs | A-SYS-NF-03 | ✅ | Standard-Browser + stateless Vue Router |
+| Neue Module ohne Architekturänderung | A-SYS-AL-06 | ✅ | Route + View-Datei genügt; Muster dokumentiert |
+| Übergeordnete Ansicht bleibt beim Öffnen einer Detailansicht offen | A-SYS-NF-04 | ⚠️ | **Offen** – Router-Navigation ersetzt die aktuelle View; benötigt Modal/Drawer-Pattern → folgt mit AP-08 |
+
+> **Lücke A-SYS-NF-04:** Die aktuelle Router-Architektur navigiert weg von der übergeordneten Ansicht (`/bewohner/:id` ersetzt `/bewohner`). A-SYS-NF-04 verlangt, dass beim Öffnen eines Anhangs aus dem Bewohner-Datensatz dieser Datensatz im Hintergrund sichtbar bleibt. Umsetzung: Sub-Detail-Ansichten (Dokumente, Anhänge) müssen als Modal oder Seitenpanel ohne Router-Push geöffnet werden. **Nachzuholen in AP-08.**
 
 #### Backend-Komponenten
 
