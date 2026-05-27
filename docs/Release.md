@@ -197,7 +197,7 @@
 | P-AU-LD | Landesinterne Verteilung durchführen | ✅ Abgeschlossen |
 | P-AU-UD | Umverteilung (inter-kommunal) | ✅ Abgeschlossen |
 | P-SL-KA | Kassenführung | ✅ Abgeschlossen |
-| P-SL-BK | Bezahlkarte | ✅ Abgeschlossen |
+| G-SL-BK | Bezahlkarte | ✅ Abgeschlossen |
 | P-SL-PH | Pfandverwaltung | ✅ Abgeschlossen |
 | P-SL-PZ | Einmalzahlungen | ✅ Abgeschlossen |
 | P-SL-ED | Eingezogenes Eigentum | ➕ Abgeschlossen (A-SL-ED-04, begann in R5) |
@@ -268,7 +268,7 @@
 | P-AU-LD | Landesinterne Verteilung durchführen | R6 | R6 |
 | P-AU-UD | Umverteilung (inter-kommunal) | R6 | R6 |
 | P-SL-KA | Kassenführung | R6 | R6 |
-| P-SL-BK | Bezahlkarte | R6 | R6 |
+| G-SL-BK | Bezahlkarte | R6 | R6 |
 | P-SL-PH | Pfandverwaltung | R6 | R6 |
 | P-SL-PZ | Einmalzahlungen | R6 | R6 |
 | G-SYS-ST | Statistiken & Reporting | R7 | R7 |
