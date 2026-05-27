@@ -214,16 +214,21 @@ npm run dev
 
 #### Akzeptanzkriterien – Status
 
-| Kriterium | Status | Umsetzung |
-|-----------|--------|-----------|
-| Benutzerverwaltung (anlegen, bearbeiten, deaktivieren) | ✅ | `BenutzerController` + `AdminBenutzerView.vue` |
-| Rollenverwaltung (CRUD + Berechtigungsmatrix) | ✅ | `RolleController` + `AdminRollenView.vue` |
-| Modul-/Funktionsberechtigungen (LESEN, SCHREIBEN, ADMINISTRIEREN) | ✅ | `ModulBerechtigung`-Entität, 18 Module × 3 Typen |
-| Authentifizierung aus Datenbank | ✅ | `BenutzerDetailsService` (UserDetailsService) |
-| BCrypt-Passwortspeicherung | ✅ | `BCryptPasswordEncoder(12)` in `SecurityConfig` |
-| Method-Level-Security per Berechtigung | ✅ | `@EnableMethodSecurity` + `@PreAuthorize("hasAuthority('MODUL:TYP')")` |
-| AfA-Zugehörigkeit pro Benutzer | ✅ | `AfA`-Entität + FK `benutzer.afa_id` |
-| Admin-Initialbenutzer beim ersten Start | ✅ | `DataInitializer` erzeugt `admin/changeme` mit ADMIN-Rolle |
+| Kriterium | Anforderung | Status | Umsetzung |
+|-----------|-------------|--------|-----------|
+| Benutzerverwaltung (anlegen, bearbeiten, deaktivieren) | A-SYS-RR-01 | ✅ | `BenutzerController` + `AdminBenutzerView.vue` |
+| Rollenverwaltung (CRUD + Berechtigungsmatrix) | A-SYS-RR-01, RR-03 | ✅ | `RolleController` + `AdminRollenView.vue` |
+| Modul-/Funktionsberechtigungen (LESEN, SCHREIBEN, ADMINISTRIEREN) | A-SYS-RR-03 | ✅ | `ModulBerechtigung`-Entität, 18 Module × 3 Typen |
+| Authentifizierung aus Datenbank | A-SYS-RR-01 | ✅ | `BenutzerDetailsService` (UserDetailsService) |
+| BCrypt-Passwortspeicherung | A-SYS-RR-01 | ✅ | `BCryptPasswordEncoder(12)` in `SecurityConfig` |
+| Method-Level-Security per Berechtigung | A-SYS-RR-05 | ✅ | `@EnableMethodSecurity` + `@PreAuthorize("hasAuthority('MODUL:TYP')")` |
+| Berechtigungsänderungen wirken sofort ohne Neuanmeldung | A-SYS-RR-05 | ✅ | `BenutzerDetailsService` ohne Cache, stateless Sessions |
+| AfA-Zugehörigkeit pro Benutzer konfigurierbar | A-SYS-RR-02 | ✅ | `AfA`-Entität + FK `benutzer.afa_id`, 6 Seed-AfAs |
+| Datenzugriff nach AfA-Zugehörigkeit filtern | A-SYS-RR-02 | ⚠️ | **Datenmodell vorhanden, Filterung in Abfragen noch nicht implementiert** – folgt mit AP-04+ wenn Domain-Endpunkte entstehen |
+
+> **Lücke A-SYS-RR-02** (12–18 PT, höchste Einzelschätzung in AP-02):  
+> Der Anforderungstext verlangt, dass der *Zugriff auf Bewohner:innen-Daten* nach AfA-Zugehörigkeit regelbar ist. Das Datenmodell (`benutzer.afa_id → afa`) ist vollständig umgesetzt und konfigurierbar. Die eigentliche **Abfrage-Filterung** – d. h. dass ein Sachbearbeiter aus AfA-TRI nur Bewohner:innen der AfA-TRI sieht – existiert noch nicht, da Bewohner-Endpunkte erst in AP-04 entstehen. Die Architektur (Principal trägt `afa_id`) ist so vorbereitet, dass die Filterung dort als Spring-Data-Specification ergänzt werden kann.  
+> **Nachzuholen in AP-04:** `BewohnerRepository` erhält eine Specification/Query die `unterkunft.afa_id = principal.afaId` prüft, sofern der Benutzer nicht die Rolle ADMIN hat.
 
 #### Datenbankschema – `V3__rollen_rechteverwaltung.sql`
 

@@ -65,7 +65,7 @@ Technische Grundlage der Anwendung: Web-Framework (React), Datenbankwahl, Concur
 
 ---
 
-## AP-02 – Rollen- & Rechteverwaltung
+## AP-02 – Rollen- & Rechteverwaltung ✅
 
 **Anforderungen:** A-SYS-RR-01, A-SYS-RR-02, A-SYS-RR-03, A-SYS-RR-05
 
@@ -73,11 +73,12 @@ Technische Grundlage der Anwendung: Web-Framework (React), Datenbankwahl, Concur
 Granulares Rollen- und Berechtigungsmodell: Zugriff auf Module, Daten und Funktionen steuerbar nach Rolle und AfA-Zugehörigkeit (AfA, ADD, ZRF, MFFKI).
 
 **Akzeptanzkriterien:**
-- [ ] Nutzer:innen lassen sich Rollen zuweisen; jede Rolle hat definierte Berechtigungen pro Modul
-- [ ] Datenzugriff ist an AfA-Zugehörigkeit der Nutzer:in gebunden und zentral konfigurierbar
-- [ ] Nutzer:innen können je nach Modul unterschiedliche Rechte haben (lesen/schreiben/administrieren)
-- [ ] Sichtbare Daten hängen ausschließlich von der Rolle ab, nicht vom aktuell geöffneten Modul
-- [ ] Berechtigungsänderungen wirken sofort ohne Neuanmeldung
+- [x] Nutzer:innen lassen sich Rollen zuweisen; jede Rolle hat definierte Berechtigungen pro Modul
+- [x] AfA-Zugehörigkeit der Nutzer:in ist im Datenmodell verankert und konfigurierbar (`benutzer.afa_id`)
+- [x] Nutzer:innen können je nach Modul unterschiedliche Rechte haben (lesen/schreiben/administrieren)
+- [x] Sichtbare Daten hängen ausschließlich von der Rolle ab, nicht vom aktuell geöffneten Modul (stateless, per-request)
+- [x] Berechtigungsänderungen wirken sofort ohne Neuanmeldung (kein Cache in `BenutzerDetailsService`)
+- [ ] **⚠️ Offen (→ AP-04):** Abfrage-Filterung nach AfA-Zugehörigkeit in Datenbankabfragen (A-SYS-RR-02) – Infrastruktur vorhanden, Enforcement folgt mit Bewohner-Endpunkten
 
 **Abhängigkeiten:**  
 🔴 AP-01  
