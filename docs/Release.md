@@ -18,6 +18,34 @@
 
 ---
 
+## Arbeitspaket-Übersicht
+
+| AP | Titel | Beteiligte Prozesse & Anforderungen |
+|----|-------|-------------------------------------|
+| AP-01 | Systeminfrastruktur & Basisarchitektur | ✅ G-SYS-AL(A-SYS-AL-03, A-SYS-AL-04, A-SYS-AL-05, A-SYS-AL-06) · G-SYS-NF(A-SYS-NF-02, A-SYS-NF-03, A-SYS-NF-04) |
+| AP-02 | Rollen- & Rechteverwaltung | G-SYS-RR(A-SYS-RR-01, A-SYS-RR-02, A-SYS-RR-03, A-SYS-RR-05) |
+| AP-03 | Historisierung & Audit-Trail | ✅ G-SYS-HT(A-SYS-HT-01) |
+| AP-04 | Bewohner-Stammdaten & Registrierungsprozess | ✅ P-AU-VR(A-AU-VR-01, A-AU-VR-02, A-AU-VR-03) · P-AU-RE(A-AU-RE-01, A-AU-RE-05, A-AU-RE-06, A-AU-RE-11, A-AU-RE-14, A-AU-RE-15, A-AU-RE-16, A-AU-RE-17, A-AU-RE-18, A-AU-RE-19) |
+| AP-05 | AZR-Schnittstelle | ✅ P-AU-RE(A-AU-RE-02, A-AU-RE-03, A-AU-RE-06) · ✅ P-AU-EF(P-AU-EF-01, P-AU-EF-02) |
+| AP-06 | Sonderstatus-Management | ✅ G-AU-SM(A-AU-SM-01, A-AU-SM-02, A-AU-SM-03, A-AU-SM-04, A-AU-SM-05, A-AU-SM-06, A-AU-SM-08, A-AU-SM-10, A-AU-SM-11, A-AU-SM-12, A-AU-SM-15, A-AU-SM-16, A-AU-SM-17, A-AU-SM-18, A-AU-SM-19, A-AU-SM-20) |
+| AP-07 | Bewohner-Übersichten & Detailansichten | ✅ G-SYS-BÜ(A-SYS-BÜ-01, A-SYS-BÜ-02, A-SYS-BÜ-03, A-SYS-BÜ-04, A-SYS-BÜ-05, A-SYS-BÜ-06, A-SYS-BÜ-08, A-SYS-BÜ-11, A-SYS-BÜ-12) · G-SYS-BD(A-SYS-BD-01, A-SYS-BD-02) |
+| AP-08 | Freitext-Dokumentation | ✅ G-SYS-FD(A-SYS-FD-01, A-SYS-FD-02, A-SYS-FD-04, A-SYS-FD-05, A-SYS-FD-11, A-SYS-FD-12, A-SYS-FD-15, A-SYS-FD-16) |
+| AP-09 | Terminverwaltung | ✅ G-SYS-TV(A-SYS-TV-01, A-SYS-TV-02, A-SYS-TV-03, A-SYS-TV-04, A-SYS-TV-05, A-SYS-TV-06, A-SYS-TV-07, A-SYS-TV-09, A-SYS-TV-10, A-SYS-TV-11, A-SYS-TV-12) |
+| AP-10 | Vordrucke & Formulare | ✅ G-SYS-VD(A-SYS-VD-01, A-SYS-VD-02, A-SYS-VD-03, A-SYS-VD-04, A-SYS-VD-05, A-SYS-VD-06, A-SYS-VD-07) |
+| AP-11 | Bewohnerausweis | ✅ G-SYS-BA(A-SYS-BA-01, A-SYS-BA-02, A-SYS-BA-03, A-SYS-BA-05, A-SYS-BA-06) |
+| AP-12 | Liegenschaftsmanagement | ✅ P-SD-LM(A-SD-LM-01, A-SD-LM-02, A-SD-LM-03, A-SD-LM-04, A-SD-LM-05, A-SD-LM-06, A-SD-LM-07, A-SD-LM-08, A-SD-LM-09, A-SD-LM-10, A-SD-LM-11, A-SD-LM-12, A-SD-LM-13, A-SD-LM-14, A-SD-LM-15, A-SD-LM-16, A-SD-LM-18, A-SD-LM-19, A-SD-LM-20, A-SD-LM-21) |
+| AP-13 | Belegungsplanung | ✅ P-SD-BP(A-SD-BP-01, A-SD-BP-02, A-SD-BP-03, A-SD-BP-04, A-SD-BP-05, A-SD-BP-06, A-SD-BP-07, A-SD-BP-08, A-SD-BP-09, A-SD-BP-10) |
+| AP-14 | Anwesenheitserfassung & Abgängigkeit | ✅ P-SD-AE(A-SD-AE-01, A-SD-AE-02, A-SD-AE-03, A-SD-AE-04, A-SD-AE-05, A-SD-AE-09, A-SD-AE-10, A-SD-AE-11, A-SD-AE-12, A-SD-AE-14, A-SD-AE-15, A-SD-AE-16, A-SD-AE-17, A-SD-AE-18, A-SD-AE-19) |
+| AP-15 | Verlegungsplanung (intern) | ✅ P-AU-VD(A-AU-VD-01, A-AU-VD-02, A-AU-VD-04, A-AU-VD-05) |
+| AP-16 | Landesinterne Verteilung & Umverteilung | ✅ P-AU-LP(A-AU-LP-01, A-AU-LP-03, A-AU-LP-04, A-AU-LP-05, A-AU-LP-06, A-AU-LP-07, A-AU-LP-08, A-AU-LP-09, A-AU-LP-10, A-AU-LP-12, A-AU-LP-13, A-AU-LP-14, A-AU-LP-15, A-AU-LP-16, A-AU-LP-17, A-AU-LP-18, A-AU-LP-19, A-AU-LP-20, A-AU-LP-21, A-AU-LP-22, A-AU-LP-23, A-AU-LP-24, A-AU-LP-25, A-AU-LP-26) · ✅ P-AU-LD(A-AU-LD-01, A-AU-LD-02, A-AU-LD-03, A-AU-LD-04, A-AU-LD-06) · ✅ P-AU-UD(A-AU-UD-01, A-AU-UD-02) |
+| AP-17 | Bewachung & Sicherheit (Pforte & Besucher) | ✅ P-BS-KG(A-BS-KG-01, A-BS-KG-02, A-BS-KG-03, A-BS-KG-04, A-BS-KG-05, A-BS-KG-06, A-BS-KG-09, A-BS-KG-10) · ✅ P-BS-BE(A-BS-BE-02, A-BS-BE-03, A-BS-BE-04, A-BS-BE-05, A-BS-BE-06, A-BS-BE-08, A-BS-BE-09) · ✅ P-BS-BZ(A-BS-BZ-01, A-BS-BZ-02) |
+| AP-18 | Krankenstation & Medizinisches Modul | ✅ G-KS-AL(A-KS-AL-01, A-KS-AL-02, A-KS-AL-05) · ✅ G-KS-SM(A-KS-SM-01, A-KS-SM-03, A-KS-SM-04, A-KS-SM-05, A-KS-SM-06, A-KS-SM-07, A-KS-SM-08, A-KS-SM-09, A-KS-SM-12, A-KS-SM-13, A-KS-SM-18) · ✅ P-KS-RE(A-KS-RE-01, A-KS-RE-02, A-KS-RE-03, A-KS-RE-04, A-KS-RE-05, A-KS-RE-06, A-KS-RE-07, A-KS-RE-08, A-KS-RE-09) · ✅ P-KS-GA(A-KS-GA-03, A-KS-GA-04) · ✅ P-KS-TV(A-KS-TV-02) · ✅ P-KS-KÜ(A-KS-KÜ-01, A-KS-KÜ-02, A-KS-KÜ-03, A-KS-KÜ-07, A-KS-KÜ-08, A-KS-KÜ-10) |
+| AP-19 | Sachmittel- & Leistungsverwaltung | ✅ P-SD-SM(A-SD-SM-01, A-SD-SM-02, A-SD-SM-03, A-SD-SM-04, A-SD-SM-06, A-SD-SM-07, A-SD-SM-08, A-SD-SM-09, A-SD-SM-10) · ✅ P-SD-EG(A-SD-EG-02, A-SD-EG-03, A-SD-EG-04, A-SD-EG-05, A-SD-EG-06) · P-SL-ED(A-SL-ED-01) |
+| AP-20 | Soziale Leistungen & Kassenführung | ✅ P-SL-KA(A-SL-KA-01, A-SL-KA-02, A-SL-KA-03, A-SL-KA-11, A-SL-KA-12, A-SL-KA-13, A-SL-KA-14, A-SL-KA-15, A-SL-KA-16, A-SL-KA-17) · ✅ G-SL-BK(A-SL-BK-01) · ✅ P-SL-PH(A-SL-PH-01, A-SL-PH-03) · ✅ P-SL-PZ(A-SL-PZ-01) · ✅ P-SL-ED(A-SL-ED-01, A-SL-ED-04) |
+| AP-21 | Statistiken & Reporting | ✅ G-SYS-ST(A-SYS-ST-01, A-SYS-ST-02, A-SYS-ST-03) |
+
+---
+
 ## R1 – Fundament
 
 **Arbeitspakete:** AP-01, AP-02, AP-03  
