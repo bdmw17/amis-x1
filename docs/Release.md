@@ -88,7 +88,7 @@
 
 | AP | Titel | Abgedeckte Anforderungen (Prozess → Nummern) |
 |----|-------|----------------------------------------------|
-| AP-05 | AZR-Schnittstelle | P-AU-RE → A-AU-RE-02, A-AU-RE-03, A-AU-RE-06 |
+| AP-05 | AZR-Schnittstelle | P-AU-RE → A-AU-RE-02, A-AU-RE-03, A-AU-RE-06 · P-AU-EF → P-AU-EF-01, P-AU-EF-02 |
 | AP-06 | Sonderstatus-Management | G-AU-SM → A-AU-SM-01, A-AU-SM-02, A-AU-SM-03, A-AU-SM-04, A-AU-SM-05, A-AU-SM-06, A-AU-SM-08, A-AU-SM-10, A-AU-SM-11, A-AU-SM-12, A-AU-SM-15, A-AU-SM-16, A-AU-SM-17, A-AU-SM-18, A-AU-SM-19, A-AU-SM-20 |
 | AP-09 | Terminverwaltung | G-SYS-TV → A-SYS-TV-01, A-SYS-TV-02, A-SYS-TV-03, A-SYS-TV-04, A-SYS-TV-05, A-SYS-TV-06, A-SYS-TV-07, A-SYS-TV-09, A-SYS-TV-10, A-SYS-TV-11, A-SYS-TV-12 |
 | AP-10 | Vordrucke & Formulare | G-SYS-VD → A-SYS-VD-01, A-SYS-VD-02, A-SYS-VD-03, A-SYS-VD-04, A-SYS-VD-05, A-SYS-VD-06, A-SYS-VD-07 |
