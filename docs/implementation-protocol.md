@@ -1,7 +1,7 @@
 # AMIS – Implementierungsprotokoll
 
 > Projekt: Asylverwaltungsprogramm (AMIS)  
-> Stack: Vue 3 + TypeScript + Vite · Spring Boot 3.5 (Java 21) · PostgreSQL 16 · Flyway  
+> Stack: Vue 3 + TypeScript + Vite · Spring Boot 3.4.5 (Java 21) · PostgreSQL 16 · Flyway 10  
 > Stand: Mai 2026
 
 ---
@@ -21,6 +21,8 @@ last/
 │   │   ├── stores/
 │   │   │   └── toast.ts                  # Pinia-Store für Toasts
 │   │   ├── views/
+│   │   │   ├── AdminBenutzerView.vue     # AP-02: Benutzerverwaltung
+│   │   │   ├── AdminRollenView.vue       # AP-02: Rollenverwaltung
 │   │   │   ├── BewohnerListeView.vue     # Stub – AP-04, AP-07
 │   │   │   ├── BewohnerDetailView.vue    # Stub – AP-04, AP-06, AP-08
 │   │   │   ├── TermineView.vue           # Stub – AP-09
@@ -34,21 +36,36 @@ last/
 │   └── src/main/
 │       ├── java/de/amis/backend/
 │       │   ├── config/
-│       │   │   ├── SecurityConfig.java   # CORS, HTTP-Basic, Stateless
-│       │   │   └── JpaConfig.java        # JPA-Auditing (Benutzername aus SecurityContext)
+│       │   │   ├── SecurityConfig.java   # CORS, HTTP-Basic, Stateless, @EnableMethodSecurity
+│       │   │   ├── JpaConfig.java        # JPA-Auditing (Benutzername aus SecurityContext)
+│       │   │   └── DataInitializer.java  # AP-02: Admin-Initialbenutzer
 │       │   ├── controller/
-│       │   │   └── ApiInfoController.java # GET /api/v1 → Version + Status
+│       │   │   ├── ApiInfoController.java # GET /api/v1 → Version + Status
+│       │   │   ├── AfAController.java    # AP-02: GET /api/v1/afa
+│       │   │   ├── BenutzerController.java # AP-02: /api/v1/admin/benutzer
+│       │   │   ├── MeController.java     # AP-02: GET /api/v1/me
+│       │   │   └── RolleController.java  # AP-02: /api/v1/admin/rollen
+│       │   ├── dto/
+│       │   │   ├── AfADto.java / BenutzerRequest.java / BenutzerResponse.java  # AP-02
+│       │   │   ├── ModulBerechtigungDto.java / RolleDto.java                   # AP-02
 │       │   ├── exception/
 │       │   │   ├── GlobalExceptionHandler.java  # RFC-9457 ProblemDetail für alle Fehler
 │       │   │   └── ResourceNotFoundException.java
 │       │   ├── model/
-│       │   │   └── BaseEntity.java       # @Version, @CreatedBy/Date, @LastModifiedBy/Date
-│       │   └── dto/, repository/, service/  # leer – folgt mit den fachlichen APs
+│       │   │   ├── BaseEntity.java       # @Version, @CreatedBy/Date, @LastModifiedBy/Date
+│       │   │   ├── AfA.java / Benutzer.java / Rolle.java / ModulBerechtigung.java  # AP-02
+│       │   │   └── ModulName.java / BerechtigungsTyp.java  # AP-02: Enums
+│       │   ├── repository/
+│       │   │   ├── AfARepository.java / BenutzerRepository.java / RolleRepository.java  # AP-02
+│       │   └── service/
+│       │       ├── BenutzerDetailsService.java  # AP-02: UserDetailsService
+│       │       ├── BenutzerService.java / RolleService.java  # AP-02
 │       └── resources/
 │           ├── application.properties    # DB, Flyway, Security, Actuator
 │           └── db/migration/
 │               ├── V1__init_schema.sql   # Initiales Datenbankschema
-│               └── V2__add_audit_columns.sql  # Audit-Spalten für alle Tabellen
+│               ├── V2__add_audit_columns.sql  # Audit-Spalten für alle Tabellen
+│               └── V3__rollen_rechteverwaltung.sql  # AP-02: AfA, Rolle, Berechtigungen
 │
 ├── docker-compose.yml                    # PostgreSQL 16 auf Port 5432
 └── docs/
@@ -189,11 +206,118 @@ npm run dev
 
 ---
 
+---
+
+### AP-02 – Rollen- & Rechteverwaltung ✅
+
+**Anforderungen:** A-SYS-RR-01, A-SYS-RR-02, A-SYS-RR-03, A-SYS-RR-05
+
+#### Akzeptanzkriterien – Status
+
+| Kriterium | Status | Umsetzung |
+|-----------|--------|-----------|
+| Benutzerverwaltung (anlegen, bearbeiten, deaktivieren) | ✅ | `BenutzerController` + `AdminBenutzerView.vue` |
+| Rollenverwaltung (CRUD + Berechtigungsmatrix) | ✅ | `RolleController` + `AdminRollenView.vue` |
+| Modul-/Funktionsberechtigungen (LESEN, SCHREIBEN, ADMINISTRIEREN) | ✅ | `ModulBerechtigung`-Entität, 18 Module × 3 Typen |
+| Authentifizierung aus Datenbank | ✅ | `BenutzerDetailsService` (UserDetailsService) |
+| BCrypt-Passwortspeicherung | ✅ | `BCryptPasswordEncoder(12)` in `SecurityConfig` |
+| Method-Level-Security per Berechtigung | ✅ | `@EnableMethodSecurity` + `@PreAuthorize("hasAuthority('MODUL:TYP')")` |
+| AfA-Zugehörigkeit pro Benutzer | ✅ | `AfA`-Entität + FK `benutzer.afa_id` |
+| Admin-Initialbenutzer beim ersten Start | ✅ | `DataInitializer` erzeugt `admin/changeme` mit ADMIN-Rolle |
+
+#### Datenbankschema – `V3__rollen_rechteverwaltung.sql`
+
+| Tabelle | Inhalt |
+|---------|--------|
+| `afa` | Aufnahmeeinrichtungen (6 Seed-Einträge: AfA-TRI, AfA-LAN, AfA-IDA, ADD, ZRF, MFFKI) |
+| `rolle` | Rollen (5 Einträge: ADMIN, SACHBEARBEITER, SOZIALARBEITER, SICHERHEIT, STATISTIK) |
+| `modul_berechtigung` | n:m Rolle ↔ Modul × Berechtigungstyp (ADMIN erhält alle 54 Kombinationen) |
+| `benutzer_rolle` | n:m Benutzer ↔ Rolle |
+| `benutzer` | ALTER: +`afa_id`, +Audit-Spalten (`version`, `erstellt_am`, etc.) |
+
+#### Backend-Komponenten
+
+**`model/AfA.java`** – Entität für Aufnahmeeinrichtungen (extends BaseEntity)
+
+**`model/Rolle.java`** – Entität mit `@OneToMany(fetch=EAGER, cascade=ALL)` auf `ModulBerechtigung`
+
+**`model/ModulBerechtigung.java`** – Entität `(rolle_id, modul, berechtigung)` mit UNIQUE-Constraint
+
+**`model/Benutzer.java`** – Entität mit `@ManyToMany(fetch=EAGER)` auf `Rolle` via `benutzer_rolle`
+
+**`model/ModulName.java`** – Enum mit 18 Modulnamen (BEWOHNER, AZR, SONDERSTATUS, …, ADMINISTRATION)
+
+**`model/BerechtigungsTyp.java`** – Enum `LESEN | SCHREIBEN | ADMINISTRIEREN`
+
+**`service/BenutzerDetailsService.java`** – `UserDetailsService`-Implementierung
+- Lädt Benutzer aus DB per `benutzername`
+- Baut `GrantedAuthority`-Liste: `ROLE_{ROLLENNAME}` + `{MODUL}:{BERECHTIGUNGSTYP}`
+- Kein Caching → Berechtigungsänderungen wirken sofort
+
+**`service/BenutzerService.java`** – CRUD inkl. Rollenzuweisung, BCrypt-Passwort-Hashing
+
+**`service/RolleService.java`** – CRUD inkl. Berechtigungsmatrix-Update (orphanRemoval)
+
+**`config/DataInitializer.java`** – `CommandLineRunner`, legt `admin/changeme` mit ADMIN-Rolle beim ersten Start an
+
+**`config/SecurityConfig.java`** (Änderungen zu AP-01)
+- `@EnableMethodSecurity` hinzugefügt
+- `BCryptPasswordEncoder(12)` Bean
+- `DaoAuthenticationProvider` Bean → `BenutzerDetailsService`
+- In-Memory-User entfernt
+
+#### REST-Endpunkte
+
+| Methode | Pfad | Berechtigung | Beschreibung |
+|---------|------|-------------|--------------|
+| GET | `/api/v1/me` | authentifiziert | Eigener Benutzer + Authorities |
+| GET | `/api/v1/afa` | authentifiziert | Aktive AfAs |
+| GET/POST | `/api/v1/admin/rollen` | `ADMINISTRATION:ADMINISTRIEREN` | Rollenliste / Rolle anlegen |
+| GET/PUT/DELETE | `/api/v1/admin/rollen/{id}` | `ADMINISTRATION:ADMINISTRIEREN` | Rolle lesen/aktualisieren/löschen |
+| GET/POST | `/api/v1/admin/benutzer` | `ADMINISTRATION:ADMINISTRIEREN` | Benutzerliste / Benutzer anlegen |
+| GET/PUT/DELETE | `/api/v1/admin/benutzer/{id}` | `ADMINISTRATION:ADMINISTRIEREN` | Benutzer lesen/aktualisieren/löschen |
+
+#### Frontend-Komponenten
+
+**`views/AdminBenutzerView.vue`** – Benutzerverwaltung
+- Tabelle aller Benutzer mit Inline-Aktiv/Inaktiv-Anzeige
+- Modal-Formular: Benutzername, Passwort, Vor-/Nachname, AfA-Auswahl, Rollen-Checkboxen
+- Anlegen / Bearbeiten / Löschen
+
+**`views/AdminRollenView.vue`** – Rollenverwaltung
+- Checkbox-Matrix: 18 Module × 3 Berechtigungstypen
+- Rolle anlegen, Berechtigungen direkt in der Tabelle setzen, Speichern
+
+**`router/index.ts`** – neue Routen
+
+| Pfad | Komponente |
+|------|-----------|
+| `/admin/benutzer` | `AdminBenutzerView` |
+| `/admin/rollen` | `AdminRollenView` |
+
+**`App.vue`** – Sidebar ergänzt um „Benutzer" und „Rollen" (mit `<hr>`-Trenner)
+
+#### Technische Besonderheit – Flyway-Fix
+Die ursprüngliche `pom.xml` enthielt keine Flyway-Dependency; `spring.flyway.enabled=true` in `application.properties` hatte daher keine Wirkung. Behoben durch Hinzufügen von:
+```xml
+<dependency>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-core</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-database-postgresql</artifactId>
+</dependency>
+```
+In Spring Boot 3.3+ ist `flyway-database-postgresql` für PostgreSQL-Support Pflicht.
+
+---
+
 ## Offene Arbeitspakete
 
 | AP | Titel | Abhängigkeit | Schätzung |
 |----|-------|-------------|-----------|
-| **AP-02** | Rollen- & Rechteverwaltung | AP-01 ✅ | 23–35 PT |
+| ~~**AP-02**~~ | ~~Rollen- & Rechteverwaltung~~ | ~~AP-01 ✅~~ | ~~23–35 PT~~ ✅ |
 | **AP-03** | Historisierung & Audit-Trail | AP-01 ✅, AP-02 | 6–10 PT |
 | **AP-04** | Bewohner-Stammdaten & Registrierung | AP-01 ✅ | — |
 | **AP-05** | AZR-Schnittstelle | AP-04 | — |
